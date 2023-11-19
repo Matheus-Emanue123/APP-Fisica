@@ -166,6 +166,7 @@ class PhysicsGraphApp:
         plt.legend()
 
         plt.tight_layout()
+        plt.show()
 
 root = tk.Tk()
 app = PhysicsGraphApp(root)
