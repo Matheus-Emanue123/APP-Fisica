@@ -45,7 +45,7 @@ class PhysicsGraphApp:
         inicial_entry = ttk.Entry(tab)
         inicial_entry.pack()
 
-        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mru(float(velocidade_entry.get()), np.arange(1.0, 51.0, 0.1).tolist(), float(inicial_entry.get())))
+        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mru(float(velocidade_entry.get()), np.arange(0.0, 51.0, 0.1).tolist(), float(inicial_entry.get())))
         plot_button.pack()
 
     def setup_mruv_tab(self, tab):
@@ -65,7 +65,7 @@ class PhysicsGraphApp:
         inicial_entry = ttk.Entry(tab)
         inicial_entry.pack()
 
-        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mruv(float(velocidade_inicial_entry.get()), float(aceleracao_entry.get()), np.arange(1.0, 51.0, 0.1).tolist(), float(inicial_entry.get())))
+        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mruv(float(velocidade_inicial_entry.get()), float(aceleracao_entry.get()), np.arange(0.0, 51.0, 0.1).tolist(), float(inicial_entry.get())))
         plot_button.pack()
 
     def setup_mcu_tab(self, tab):
@@ -80,7 +80,7 @@ class PhysicsGraphApp:
         raio_entry = ttk.Entry(tab)
         raio_entry.pack()
 
-        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mcu(float(velocidade_linear_entry.get()), float(raio_entry.get()), np.arange(1.0, 51.0, 0.1).tolist()))
+        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mcu(float(velocidade_linear_entry.get()), float(raio_entry.get()), np.arange(0.0, 51.0, 0.1).tolist()))
         plot_button.pack()
 
     def setup_mcuv_tab(self, tab):
@@ -100,7 +100,7 @@ class PhysicsGraphApp:
         raio_entry = ttk.Entry(tab)
         raio_entry.pack()
 
-        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mcuv(float(velocidade_angular_inicial_entry.get()), float(aceleracao_angular_entry.get()), float(raio_entry.get()), np.arange(1.0, 51.0, 0.1).tolist()))
+        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mcuv(float(velocidade_angular_inicial_entry.get()), float(aceleracao_angular_entry.get()), float(raio_entry.get()), np.arange(0.0, 51.0, 0.1).tolist()))
         plot_button.pack()
     
     def plot_mru(self, velocidade, tempo, inicial):
