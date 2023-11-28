@@ -1,14 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
+from typing import Self
 from matplotlib import pyplot as plt
 import numpy as np
 import tkinter as tk
 import numpy as np
-from PIL import Image, ImageTk
 
 class PhysicsGraphApp:
 
     def __init__(self, root):
+        pass
 
         self.root = root
         self.root.title("Physics Calculations")
@@ -33,6 +34,7 @@ class PhysicsGraphApp:
 
         tab_control.pack(expand=1, fill='both')
 
+
     def setup_mru_tab(self, tab):
 
         velocidade_label = ttk.Label(tab, text="Digite a velocidade do MRU:")
@@ -45,7 +47,7 @@ class PhysicsGraphApp:
         inicial_entry = ttk.Entry(tab)
         inicial_entry.pack()
 
-        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mru(float(velocidade_entry.get()), np.arange(0.0, 51.0, 0.1).tolist(), float(inicial_entry.get())))
+        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mru(float(velocidade_entry.get()),np.arange(0.0, 51.0, 0.1).tolist(), float(inicial_entry.get())))
         plot_button.pack()
 
     def setup_mruv_tab(self, tab):
