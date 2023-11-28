@@ -7,7 +7,7 @@ pygame.init()
 WIDTH, HEIGHT = 800, 800
 manager = pygame_gui.UIManager((800, 600))
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Planeta Simulation")
+pygame.display.set_caption("Simulação Sistema Solar")
 
 WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
@@ -148,7 +148,6 @@ def main():
                         raio_entry = pygame_gui.elements.UITextEntryLine(pygame.Rect((0, 100), (200, 50)), manager, window, placeholder_text='Raio do Planeta')
                         cor_entry = pygame_gui.elements.UITextEntryLine(pygame.Rect((0, 150), (200, 50)), manager, window, placeholder_text='Cor do Planeta')
                         massa_entry = pygame_gui.elements.UITextEntryLine(pygame.Rect((0, 200), (200, 50)), manager, window, placeholder_text='Massa do Planeta')                     
-                        
 
         if event.type == pygame.USEREVENT:
             if event.user_type == pygame_gui.UI_TEXT_ENTRY_FINISHED:

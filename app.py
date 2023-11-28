@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from typing import Self
 from matplotlib import pyplot as plt
 import numpy as np
 import tkinter as tk
