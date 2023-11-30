@@ -1,8 +1,8 @@
 from vpython import *
+import random
 
 def deslocar(corpo):
-    
-    global dt
+    global dt, particles, particles_created
     queda = True
     p = corpo.traj.point(corpo.traj.npoints - 1)["pos"]
     corpo.pos += dt*corpo.v + dt**2*corpo.a/2.
@@ -39,30 +39,41 @@ def projetar(corpo, vel, ang, leg):
     corpo.traj = curve(pos = vec(corpo.pos),color = corpo.color) 
     corpo.alt = (vel**2)*(sin(ang*pi/180.)**2) / (2*9.8)
 
-scene = canvas(title = "<h1>OI Fábio</h1>", forward = vec(-0.5, -0.2, -1))
+scene = canvas(title = "<h1>Oi Fábio</h1>", forward = vec(-0.5, -0.2, -1))
 scene.caption = ""
 a = 47.
 dt = 0.01
 g = vec(0, -9.8, 0)
 q1 = q2 = q3 = True
 
-bola1 = sphere(pos = vec(-7.5, 0.2, 1), radius = 0.2, color = vec(0.93, 1, 0.16))
 
-solo = box(pos = vec(0, -0.1, 0), size = vec(30 , 0.2, 10),texture = textures.metal)
+solo = box(pos = vec(0, -0.1, 0), size = vec(60 , 0.2, 10),texture = textures.metal)
 
 while True:
-
+    
     vel = float(input('Velocidade:'))
     ang = float(input('Angulo:'))
+
+    # Generate random RGB values
+    color = vec(random.random(), random.random(), random.random())
+
+    # Create a new instance of the sphere with the random color
+    bola1 = sphere(pos = vec(-7.5, 0.2, 1), radius = 0.2, color = color)
+
+    # Reset the properties of bola1
+    bola1.t = 0
+    bola1.d = 0
 
     projetar(bola1, vel, ang, "Bola 1")
 
     bola1.a = g
 
+    q1 = True  # Reset q1 in each iteration
     while q1:
-         rate(100)
-         if q1: q1 = deslocar (bola1)
-
+        rate(100)
+        if q1: 
+            q1 = deslocar(bola1)
+            
     resultados(bola1)
 
     resposta = input('Deseja executar a simulação novamente? (s/n): ')

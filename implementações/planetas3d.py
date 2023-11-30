@@ -27,14 +27,14 @@ plutoOrbitRadius = 5.9e9
 
 sun = sphere( radius = sunRadius, texture = "https://i.imgur.com/XdRTvzj.jpg", emissive = True )
 mercury = sphere( radius = mercuryRadius, texture = "https://i.imgur.com/SLgVbwD.jpg", make_trail = True, trail_radius = mercuryRadius * 0.05 )
-venus = sphere( radius = venusRadius, texture = "https://i.imgur.com/7VTEX2w.jpeg", make_trail = True, trail_color = color.green, trail_radius = venusRadius * 0.5 )
-earth = sphere( radius = earthRadius, texture = textures.earth, make_trail = True, trail_color = color.blue, trail_radius = earthRadius * 0.5 )
-mars = sphere( radius = marsRadius, texture = "https://i.imgur.com/Mwsa16j.jpg", make_trail = True, trail_color = color.red, trail_radius = marsRadius * 0.5 ) 
-jupiter = sphere( radius = jupiterRadius, texture = "https://i.imgur.com/RMMtt0K.jpg", make_trail = True, trail_color = color.orange, trail_radius = jupiterRadius * 0.5 )
-saturn = sphere( radius = saturnRadius, texture = "https://i.imgur.com/02Kt4gy.jpg", make_trail = True, trail_color = color.yellow, trail_radius = saturnRadius * 0.5 )
-uranus = sphere( radius = uranusRadius, texture = "https://i.imgur.com/2kZNvFw.jpg", make_trail = True, trail_color = color.cyan, trail_radius = uranusRadius * 0.5 )
-neptune = sphere( radius = neptuneRadius, texture = "https://i.imgur.com/lyLpoMk.jpg", make_trail = True, trail_color = color.blue, trail_radius = neptuneRadius * 0.5 )
-pluto = sphere( radius = plutoRadius, texture = "https://i.imgur.com/ds7WOMu.jpg", make_trail = True, trail_color = vector(1,0.7,0.2), trail_radius = plutoRadius * 0.5 )
+venus = sphere( radius = venusRadius, texture = "https://i.imgur.com/7VTEX2w.jpeg", make_trail = True, trail_color = color.white, trail_radius = 122 )
+earth = sphere( radius = earthRadius, texture = textures.earth, make_trail = True, trail_color = color.white, trail_radius = 122 )
+mars = sphere( radius = marsRadius, texture = "https://i.imgur.com/Mwsa16j.jpg", make_trail = True, trail_color = color.white, trail_radius = 122) 
+jupiter = sphere( radius = jupiterRadius, texture = "https://i.imgur.com/RMMtt0K.jpg", make_trail = True, trail_color = color.white, trail_radius = 122)
+saturn = sphere( radius = saturnRadius, texture = "https://i.imgur.com/02Kt4gy.jpg", make_trail = True, trail_color = color.white, trail_radius = 122 )
+uranus = sphere( radius = uranusRadius, texture = "https://i.imgur.com/2kZNvFw.jpg", make_trail = True, trail_color = color.white, trail_radius = 122 )
+neptune = sphere( radius = neptuneRadius, texture = "https://i.imgur.com/lyLpoMk.jpg", make_trail = True, trail_color = color.white, trail_radius = 122)
+pluto = sphere( radius = plutoRadius, texture = "https://i.imgur.com/ds7WOMu.jpg", make_trail = True, trail_color = color.white, trail_radius = 122)
 
 solar_system = {'Sun': sun, 'Mercury': mercury, 'Venus': venus, 'Earth': earth, 'Mars': mars,
                     'Jupiter': jupiter, 'Saturn': saturn, 'Uranus': uranus, 'Neptune': neptune, 'Pluto': pluto}
@@ -70,20 +70,6 @@ saturnAngle = 0
 uranusAngle = 0
 neptuneAngle = 0
 plutoAngle = 0
-
-#The following variables define glowscripts graphing capabilities that plots the position of the planet's orbit around the 
-#Sun in real time. If the user wishes to see the progression of the plotting for the planets faster, then set the rate to a
-#higher number
-tgraph = graph(title = "Position of Planets Orbiting the Sun", xtitle="Position in x-direction (km)", ytitle="Position in z-direction(km)", background = color.black)
-rm = gcurve(color = color.white, label="Mercury")
-rv = gcurve(color = color.green, label = "Venus")
-re = gcurve(color = color.magenta, label = "Earth")
-rM = gcurve(color = color.red, label = "Mars" )
-rj = gcurve(color = color.orange, label = "Jupiter")
-rs = gcurve(color = color.yellow, label = "Saturn")
-ru = gcurve(color = color.cyan, label = "Uranus")
-rn = gcurve(color = color.blue, label = "Neptune")
-rp = gcurve(color = vector(1,0.7,0.2), label = "Pluto")
 
 #Creates a subtle sunlight animation to give the full affect of the Sun on each planet
 sunlight = local_light( pos = vec(0,0,0), color=color.white )
@@ -152,16 +138,4 @@ while (True):
     uranus.rotate (angle = uranusEpsilon, axis = vector(np.sin(uranusEpsilon), np.cos(uranusEpsilon), 0))
     neptune.rotate (angle = neptuneEpsilon, axis = vector(np.sin(neptuneEpsilon), np.cos(neptuneEpsilon), 0))
     pluto.rotate (angle = plutoEpsilon, axis = vector(np.sin(plutoEpsilon), np.cos(plutoEpsilon), 0))
-    
-    #Plotting the real time positions of each planet around the Sun
-    rm.plot(mercury.pos.x, mercury.pos.z)
-    rv.plot(venus.pos.x, venus.pos.z)
-    re.plot(earth.pos.x, earth.pos.z)
-    rM.plot(mars.pos.x, mars.pos.z)
-    rj.plot(jupiter.pos.x, jupiter.pos.z)
-    rs.plot(saturn.pos.x, saturn.pos.z)
-    ru.plot(uranus.pos.x, uranus.pos.z)
-    rn.plot(neptune.pos.x, neptune.pos.z)
-    rp.plot(pluto.pos.x, pluto.pos.z)
-    
       
