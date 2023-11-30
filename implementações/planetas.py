@@ -146,18 +146,30 @@ def main():
                     if planeta.check_click_on_planet(mouse_pos, planeta):
                         print("Planeta clicado")
                         window = pygame_gui.elements.UIWindow(pygame.Rect((200, 200), (600, 400)), manager)
-                        window.set_display_title('Informações do Planeta')
+                        window.set_display_title(f'Informações do Corpo Celeste: {planeta.nome}')
 
-                        raio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 0), (300, 50)), f'Raio: {planeta.raioReal}', manager, window)
-                        massa_label = pygame_gui.elements.UILabel(pygame.Rect((0, 50), (300, 50)), f'Massa: {planeta.massa}', manager, window)
-                        afelio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 100), (300, 50)), f'Distância no Afélio: {planeta.afelio}', manager, window)
-                        perielio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 150), (300, 50)), f'Distância no periélio: {planeta.perielio}', manager, window)
-                        fg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 200), (300, 50)), f'Força G: {planeta.Fg}', manager, window)
+                        if planeta.estrela == True:
 
-                        planet_image = pygame.image.load(f'imagens/{planeta.nome}.png')
-                        scaled_image = pygame.transform.scale(planet_image, (200, 200))
-                        planet_image_ui = pygame_gui.elements.UIImage(pygame.Rect((300, 60), (200, 200)), scaled_image, manager, container=window)                    
+                            raio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 0), (300, 50)), f'Raio: {planeta.raioReal}', manager, window)
+                            massa_label = pygame_gui.elements.UILabel(pygame.Rect((0, 50), (300, 50)), f'Massa: {planeta.massa}', manager, window)
+                            fg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 200), (300, 50)), f'Força G: {planeta.Fg}', manager, window)
+
+                            planet_image = pygame.image.load(f'imagens/{planeta.nome}.png')
+                            scaled_image = pygame.transform.scale(planet_image, (200, 200))
+                            planet_image_ui = pygame_gui.elements.UIImage(pygame.Rect((300, 60), (200, 200)), scaled_image, manager, container=window)
+
+                        elif planeta.estrela == False:
+
+                            raio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 0), (300, 50)), f'Raio: {planeta.raioReal}', manager, window)
+                            massa_label = pygame_gui.elements.UILabel(pygame.Rect((0, 50), (300, 50)), f'Massa: {planeta.massa}', manager, window)
+                            fg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 200), (300, 50)), f'Força G: {planeta.Fg}', manager, window)    
+                            afelio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 100), (300, 50)), f'Distância no Afélio: {planeta.afelio}', manager, window)
+                            perielio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 150), (300, 50)), f'Distância no periélio: {planeta.perielio}', manager, window)                        
                         
+                            planet_image = pygame.image.load(f'imagens/{planeta.nome}.png')
+                            scaled_image = pygame.transform.scale(planet_image, (200, 200))
+                            planet_image_ui = pygame_gui.elements.UIImage(pygame.Rect((300, 60), (200, 200)), scaled_image, manager, container=window)
+
 
         manager.process_events(event)
 
@@ -173,5 +185,3 @@ def main():
     pygame.quit()
 
 main()  
-
-          

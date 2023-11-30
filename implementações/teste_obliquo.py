@@ -2,7 +2,7 @@ from vpython import *
 import random
 
 def deslocar(corpo):
-    global dt, particles, particles_created
+    global dt
     queda = True
     p = corpo.traj.point(corpo.traj.npoints - 1)["pos"]
     corpo.pos += dt*corpo.v + dt**2*corpo.a/2.
@@ -50,6 +50,8 @@ q1 = q2 = q3 = True
 solo = box(pos = vec(0, -0.1, 0), size = vec(60 , 0.2, 10),texture = textures.metal)
 
 while True:
+
+    cont = 0
     
     vel = float(input('Velocidade:'))
     ang = float(input('Angulo:'))
@@ -58,23 +60,24 @@ while True:
     color = vec(random.random(), random.random(), random.random())
 
     # Create a new instance of the sphere with the random color
-    bola1 = sphere(pos = vec(-7.5, 0.2, 1), radius = 0.2, color = color)
+    bola = sphere(pos = vec(-7.5, 0.2, 1), radius = 0.2, color = color)
 
-    # Reset the properties of bola1
-    bola1.t = 0
-    bola1.d = 0
+    # Reset the properties of bola
+    bola.t = 0
+    bola.d = 0
 
-    projetar(bola1, vel, ang, "Bola 1")
+    cont += 1
+    projetar(bola, vel, ang, f"Bola {cont}")
 
-    bola1.a = g
+    bola.a = g
 
     q1 = True  # Reset q1 in each iteration
     while q1:
         rate(100)
         if q1: 
-            q1 = deslocar(bola1)
+            q1 = deslocar(bola)
             
-    resultados(bola1)
+    resultados(bola)
 
     resposta = input('Deseja executar a simulação novamente? (s/n): ')
     if resposta.lower() in ['n', 'nao', 'não']:
