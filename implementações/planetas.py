@@ -131,6 +131,8 @@ def main():
 
     while run:
 
+        mouse_pos = pygame.mouse.get_pos()
+
         time_delta = clock.tick(60) / 1000
         WIN.fill((0, 0, 0))
 
