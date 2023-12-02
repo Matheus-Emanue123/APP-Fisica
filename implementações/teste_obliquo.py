@@ -56,13 +56,10 @@ while True:
     vel = float(input('Velocidade:'))
     ang = float(input('Angulo:'))
 
-    # Generate random RGB values
     color = vec(random.random(), random.random(), random.random())
 
-    # Create a new instance of the sphere with the random color
-    bola = sphere(pos = vec(-7.5, 0.2, 1), radius = 0.2, color = color)
+    bola = sphere(pos = vec(-28, 0.2, 1), radius = 0.2, color = color)
 
-    # Reset the properties of bola
     bola.t = 0
     bola.d = 0
 
