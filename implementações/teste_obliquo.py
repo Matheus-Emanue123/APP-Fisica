@@ -44,7 +44,7 @@ scene.caption = ""
 a = 47.
 dt = 0.01
 g = vec(0, -9.8, 0)
-q1 = q2 = q3 = True
+q1 = True
 
 
 solo = box(pos = vec(0, -0.1, 0), size = vec(60 , 0.2, 10),texture = textures.metal)
@@ -59,7 +59,6 @@ while True:
     color = vec(random.random(), random.random(), random.random())
 
     bola = sphere(pos = vec(-28, 0.2, 1), radius = 0.2, color = color)
-    bola = sphere(pos = vec(-7.5, 0.2, 1), radius = 0.2, color = color)
 
     bola.t = 0
     bola.d = 0

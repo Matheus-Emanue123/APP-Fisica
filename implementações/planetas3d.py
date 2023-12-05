@@ -20,7 +20,6 @@ earth = sphere( radius = earthRadius, texture = textures.earth, make_trail = Tru
 mars = sphere( radius = marsRadius, texture = "https://i.imgur.com/Mwsa16j.jpg", make_trail = True, trail_color = color.white, trail_radius = 122) 
 
 solar_system = {'Sun': sun, 'Mercury': mercury, 'Venus': venus, 'Earth': earth, 'Mars': mars}
-solar_system = {'Sun': sun, 'Mercury': mercury, 'Venus': venus, 'Earth': earth, 'Mars': mars}
 
 mercuryOrbitRate = 88.0
 venusOrbitRate = 224.7
@@ -56,7 +55,6 @@ while (True):
  
     rate(150) 
    
-   
     mercury.pos = vec( mercuryOrbitRadius/150 * cos(radians(mercuryAngle)), 0, mercuryOrbitRadius/150 * sin(radians(mercuryAngle)) ) 
     venus.pos = vec( venusOrbitRadius/150 * cos(radians(venusAngle)), 0, venusOrbitRadius/150 * sin(radians(venusAngle)) ) 
     earth.pos = vec( earthOrbitRadius/150 * cos(radians(earthAngle)), 0, earthOrbitRadius/150 * sin(radians(earthAngle)) )
@@ -70,11 +68,6 @@ while (True):
     sun.rotate (angle = sunEpsilon, axis = vector(np.sin(sunEpsilon), np.cos(sunEpsilon), 0))
     
     mercury.rotate (angle = mercuryEpslion, axis = vector(np.sin(mercuryEpslion), np.cos(mercuryEpslion), 0))
-    
-    mercury.rotate (angle = mercuryEpslion, axis = vector(np.sin(mercuryEpslion), np.cos(mercuryEpslion), 0))
     venus.rotate (angle = venusEpsilon, axis = vector(np.sin(venusEpsilon), np.cos(venusEpsilon), 0))
     earth.rotate (angle = earthEpsilon, axis = vector(np.sin(earthEpsilon), np.cos(earthEpsilon), 0))
     mars.rotate (angle = marsEpsilon, axis = vector(np.sin(marsEpsilon), np.cos(marsEpsilon), 0))
-      
-    earth.rotate (angle = earthEpsilon, axis = vector(np.sin(earthEpsilon), np.cos(earthEpsilon), 0))
-    mars.rotate (angle = marsEpsilon, axis = vector(np.sin(marsEpsilon), np.cos(marsEpsilon), 0)) 
