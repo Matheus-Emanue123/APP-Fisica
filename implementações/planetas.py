@@ -1,11 +1,15 @@
 import pygame
 import pygame_gui
 import math
+import random
 
 pygame.init()
 
 WIDTH, HEIGHT = 800, 800
 manager = pygame_gui.UIManager((800, 600))
+windows = []
+stars = [(random.randint(0, WIDTH), random.randint(0, HEIGHT)) for _ in range(100)]
+paused = False
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Simulação Sistema Solar")
 
@@ -61,10 +65,6 @@ class Planeta:
             pygame.draw.lines(win, self.cor, False, updated_points, 2)
 
         pygame.draw.circle(win, self.cor, (x, y), self.raio)
-        
-        if not self.estrela:
-            distance_text = FONT.render(f"{round(self.distancia_estrela/1000, 1)}km", 1, WHITE)
-            win.blit(distance_text, (x - distance_text.get_width()/2, y - distance_text.get_height()/2))
 
     def atracao(self, other):
         other_x, other_y = other.x, other.y
@@ -136,19 +136,28 @@ def main():
         time_delta = clock.tick(60) / 1000
         WIN.fill((0, 0, 0))
 
+        for star in stars:
+            pygame.draw.circle(WIN, (255, 255, 255), star, 2)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                window.hide()
                 run = False
 
+            if event.type == pygame.USEREVENT:
+                if event.user_type == pygame_gui.UI_WINDOW_CLOSE:
+                    if event.ui_element in windows:
+                        event.ui_element.kill()
+                        windows.remove(event.ui_element)
+
             if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_pos = pygame.mouse.get_pos()
-            
+                mouse_pos = pygame.mouse.get_pos()  
+
                 for planeta in planetas:
                     if planeta.check_click_on_planet(mouse_pos, planeta):
                         print("Planeta clicado")
                         window = pygame_gui.elements.UIWindow(pygame.Rect((200, 200), (600, 400)), manager)
                         window.set_display_title(f'Informações do Corpo Celeste: {planeta.nome}')
+                        windows.append(window)
 
                         if planeta.estrela == True:
 
@@ -172,8 +181,7 @@ def main():
                             scaled_image = pygame.transform.scale(planet_image, (200, 200))
                             planet_image_ui = pygame_gui.elements.UIImage(pygame.Rect((300, 60), (200, 200)), scaled_image, manager, container=window)
 
-
-        manager.process_events(event)
+            manager.process_events(event)
 
         for planeta in planetas:
             planeta.update_position(planetas)

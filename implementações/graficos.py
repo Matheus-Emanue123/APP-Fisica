@@ -189,11 +189,14 @@ class PhysicsGraphApp:
         plt.show()
 
     def plot_elastica(self, k, x):
+        defr = [k]
+        elastica = [k*x]
+        pot = [(k * x**2)/2]
 
         plt.figure(figsize=(12, 6))
 
         plt.subplot(1, 2, 1)
-        plt.plot(x, k * x, label="Elastica")
+        plt.plot(defr, elastica, label="Elastica")
         plt.xlabel("x (m)")
         plt.ylabel("F (N)")
         plt.title("Gráfico de Força Elástica")
@@ -201,7 +204,7 @@ class PhysicsGraphApp:
         plt.show()
 
         plt.subplot(1, 2, 2)
-        plt.plot(x, (k * x**2)/2, label="Potencial Elastica") 
+        plt.plot(defr, pot, label="Potencial Elastica") 
         plt.xlabel("x (m)")
         plt.ylabel("U (J)")
         plt.title("Gráfico de Energia Potencial Elástica")
