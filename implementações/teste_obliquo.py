@@ -58,6 +58,7 @@ while True:
 
     color = vec(random.random(), random.random(), random.random())
 
+    bola = sphere(pos = vec(-28, 0.2, 1), radius = 0.2, color = color)
     bola = sphere(pos = vec(-7.5, 0.2, 1), radius = 0.2, color = color)
 
     bola.t = 0
