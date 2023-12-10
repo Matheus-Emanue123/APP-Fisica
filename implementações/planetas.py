@@ -114,7 +114,7 @@ class Planeta:
             orbit_y = orbit_y * self.ESCALA + HEIGHT / 2
 
             distance = ((orbit_x - click_x) ** 2 + (orbit_y - click_y) ** 2) ** 0.5
-            if distance < CLICK_THRESHOLD:  # define CLICK_THRESHOLD as appropriate
+            if distance < CLICK_THRESHOLD:
                 return True
 
         return False
