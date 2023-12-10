@@ -11,7 +11,7 @@ windows = []
 stars = [(random.randint(0, WIDTH), random.randint(0, HEIGHT)) for _ in range(100)]
 CLICK_THRESHOLD = 5
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Simulação Sistema Solar")
+pygame.display.set_caption("Simulação 2D Sistema Solar")
 
 WHITE = (255, 255, 255)
 YELLOW = (255, 255, 0)
@@ -133,10 +133,10 @@ def main():
     marte = Planeta(-1.524 * Planeta.UA, 0, 12, RED, 6.39 * 10**23, nome = 'Marte', raioReal = '3.389,5 km', afelio = '249.200.000 km', perielio = '206.700.000', Fg = '3,71 m/s²')
     marte.y_vel = 24.077 * 1000
 
-    mercurio = Planeta(0.387 * Planeta.UA, 0, 8, DARK_GREY, 3.30 * 10**23, nome = 'Mercurio', raioReal = '2.439,7 km', afelio = '69.800.000 km', perielio = '46.000.000 km', Fg = '3,7 m/s²')
+    mercurio = Planeta(0.387 * Planeta.UA, 0, 8, DARK_GREY, 3.30 * 10**23, nome = 'Mercúrio', raioReal = '2.439,7 km', afelio = '69.800.000 km', perielio = '46.000.000 km', Fg = '3,7 m/s²')
     mercurio.y_vel = -47.4 * 1000
 
-    venus = Planeta(0.723 * Planeta.UA, 0, 14, ORANGE, 4.8685 * 10**24, nome = 'Venus', raioReal =  '6.051,8 km', afelio = '108.900.000 km', perielio = '107.500.000 km', Fg = '8,87 m/s²')
+    venus = Planeta(0.723 * Planeta.UA, 0, 14, ORANGE, 4.8685 * 10**24, nome = 'Vênus', raioReal =  '6.051,8 km', afelio = '108.900.000 km', perielio = '107.500.000 km', Fg = '8,87 m/s²')
     venus.y_vel = -35.02 * 1000
 
     planetas = [sol, terra, marte, mercurio, venus]
@@ -177,7 +177,7 @@ def main():
                             massa_label = pygame_gui.elements.UILabel(pygame.Rect((0, 50), (300, 50)), f'Massa: {planeta.massa}', manager, window)
                             fg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 200), (300, 50)), f'Aceleração da Gravidade: {planeta.Fg}', manager, window)    
                             afelio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 100), (300, 50)), f'Distância no Afélio: {planeta.afelio}', manager, window)
-                            perielio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 150), (300, 50)), f'Distância no periélio: {planeta.perielio}', manager, window)                        
+                            perielio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 150), (300, 50)), f'Distância no Periélio: {planeta.perielio}', manager, window)                        
                         
                             planet_image = pygame.image.load(f'imagens/{planeta.nome}.png')
                             scaled_image = pygame.transform.scale(planet_image, (200, 200))

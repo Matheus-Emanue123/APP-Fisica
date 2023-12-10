@@ -21,6 +21,7 @@ def run_file5():
 
 root = tk.Tk()
 root.configure(bg='white')
+root.title("Trabalho de Física")
 
 customFont = tkFont.Font(family="Helvetica", size=12)
 
@@ -39,7 +40,7 @@ button3.pack(pady=10)
 button4 = ttk.Button(root, text="Simulação 3D Sistema Solar", command=run_file4, style="BW.TButton")
 button4.pack(pady=10)
 
-button5 = ttk.Button(root, text="Simulação 3D Sistema Massa-MOla", command=run_file4, style="BW.TButton")
+button5 = ttk.Button(root, text="Simulação 3D Sistema Massa-Mola", command=run_file5, style="BW.TButton")
 button5.pack(pady=10)
 
 root.mainloop()

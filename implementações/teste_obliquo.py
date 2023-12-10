@@ -27,15 +27,15 @@ def resultados(corpo):
     alcance = corpo.pos.x - p0.x
     velocidade = corpo.d / corpo.t
     scene.caption += "<b>" + corpo.legenda + "</b>\n"
-    time.sleep(1)
+    time.sleep(0.5)
     scene.caption += "Tempo total = {:.2f} s\n".format(corpo.t)
-    time.sleep(1)
+    time.sleep(0.5)
     scene.caption += "Alcance horizontal = {:.2f} m\n".format(alcance)
-    time.sleep(1)
+    time.sleep(0.5)
     scene.caption += "Distância percorrida = {:.2f} m\n".format(corpo.d)
-    time.sleep(1)
+    time.sleep(0.5)
     scene.caption += "Velocidade média = {:.2f} m/s\n".format(velocidade)
-    time.sleep(1)
+    time.sleep(0.5)
     scene.caption += "Altura máxima = {:.2f} m\n\n".format(corpo.alt)
     return 
 
@@ -46,7 +46,7 @@ def projetar(corpo, vel, ang, leg):
     corpo.traj = curve(pos = vec(corpo.pos),color = corpo.color) 
     corpo.alt = (vel**2)*(sin(ang*pi/180.)**2) / (2*9.8)
 
-scene = canvas(title = "<h1>Oi Fábio</h1>", forward = vec(-0.5, -0.2, -1))
+scene = canvas(title = "<h1>Simulação 3D de Lançamento Oblíquo</h1>", forward = vec(-0.5, -0.2, -1))
 scene.caption = ""
 a = 47.
 dt = 0.01
@@ -61,7 +61,7 @@ while True:
     cont = 0
     
     vel = float(input('Velocidade:'))
-    ang = float(input('Angulo:'))
+    ang = float(input('Ângulo:'))
 
     color = vec(random.random(), random.random(), random.random())
 
