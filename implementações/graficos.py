@@ -11,7 +11,7 @@ class PhysicsGraphApp:
         pass
 
         self.root = root
-        self.root.title("aaaa teste aaaaaaaaaaaaaaa")
+        self.root.title("Plotar Gráficos Cinemática")
 
         tab_control = ttk.Notebook(self.root)
 
