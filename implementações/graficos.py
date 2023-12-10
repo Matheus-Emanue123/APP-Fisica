@@ -11,13 +11,9 @@ class PhysicsGraphApp:
         pass
 
         self.root = root
-        self.root.title("Physics Calculations")
+        self.root.title("aaaa teste aaaaaaaaaaaaaaa")
 
         tab_control = ttk.Notebook(self.root)
-
-        elastica_tab = ttk.Frame(tab_control)
-        tab_control.add(elastica_tab, text='Elástica')
-        self.setup_elastica_tab(elastica_tab)
 
         mru_tab = ttk.Frame(tab_control)
         tab_control.add(mru_tab, text='MRU')
@@ -106,22 +102,7 @@ class PhysicsGraphApp:
         raio_entry.pack()
 
         plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_mcuv(float(velocidade_angular_inicial_entry.get()), float(aceleracao_angular_entry.get()), float(raio_entry.get()), np.arange(0.0, 51.0, 0.1).tolist()))
-        plot_button.pack()
-
-    def setup_elastica_tab(self, tab):
-
-        k_label = ttk.Label(tab, text="Digite a constante elástica:")
-        k_label.pack()
-        k_entry = ttk.Entry(tab)
-        k_entry.pack()
-
-        x_label = ttk.Label(tab, text="Digite a deformação:")
-        x_label.pack()
-        x_entry = ttk.Entry(tab)
-        x_entry.pack()
-
-        plot_button = ttk.Button(tab, text="Plotar Gráfico", command=lambda: self.plot_elastica(float(k_entry.get()), np.arange(0.0, 51.0, 0.1).tolist()))
-        plot_button.pack()    
+        plot_button.pack()  
     
     def plot_mru(self, velocidade, tempo, inicial):
         posicoes = [inicial + velocidade * t for t in tempo]
@@ -187,29 +168,6 @@ class PhysicsGraphApp:
 
         plt.tight_layout()
         plt.show()
-
-    def plot_elastica(self, k, x):
-        defr = [k]
-        elastica = [k*x]
-        pot = [(k * x**2)/2]
-
-        plt.figure(figsize=(12, 6))
-
-        plt.subplot(1, 2, 1)
-        plt.plot(defr, elastica, label="Elastica")
-        plt.xlabel("x (m)")
-        plt.ylabel("F (N)")
-        plt.title("Gráfico de Força Elástica")
-        plt.legend()
-        plt.show()
-
-        plt.subplot(1, 2, 2)
-        plt.plot(defr, pot, label="Potencial Elastica") 
-        plt.xlabel("x (m)")
-        plt.ylabel("U (J)")
-        plt.title("Gráfico de Energia Potencial Elástica")
-        plt.legend()
-        plt.show()   
 
 root = tk.Tk()
 app = PhysicsGraphApp(root)

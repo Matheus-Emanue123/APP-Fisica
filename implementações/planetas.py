@@ -9,7 +9,7 @@ WIDTH, HEIGHT = 800, 800
 manager = pygame_gui.UIManager((800, 600))
 windows = []
 stars = [(random.randint(0, WIDTH), random.randint(0, HEIGHT)) for _ in range(100)]
-paused = False
+CLICK_THRESHOLD = 5
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Simulação Sistema Solar")
 
@@ -106,25 +106,37 @@ class Planeta:
         if math.hypot(x - x_planeta, y - y_planeta) < planeta.raio:
             return True
         return False 
+    
+    def is_click_on_orbit(self, click_x, click_y):
+        for point in self.orbita:
+            orbit_x, orbit_y = point
+            orbit_x = orbit_x * self.ESCALA + WIDTH / 2
+            orbit_y = orbit_y * self.ESCALA + HEIGHT / 2
+
+            distance = ((orbit_x - click_x) ** 2 + (orbit_y - click_y) ** 2) ** 0.5
+            if distance < CLICK_THRESHOLD:  # define CLICK_THRESHOLD as appropriate
+                return True
+
+        return False
 
 def main():
 
     run = True
     clock = pygame.time.Clock()
 
-    sol = Planeta(0, 0, 30, YELLOW, 1.98892 * 10**30, nome = 'sol', raioReal = '696.340 km', afelio = None, perielio = None, Fg = '274 m/s²')
+    sol = Planeta(0, 0, 30, YELLOW, 1.98892 * 10**30, nome = 'Sol', raioReal = '696.340 km', afelio = None, perielio = None, Fg = '274 m/s²')
     sol.estrela = True
 
-    terra = Planeta(-1 * Planeta.UA, 0, 16, BLUE, 5.9742 * 10**24, nome = 'terra', raioReal = '6.371 km', afelio =  '152.100.000 km', perielio = '147.100.000 km', Fg = '9,8 m/s²')
+    terra = Planeta(-1 * Planeta.UA, 0, 16, BLUE, 5.9742 * 10**24, nome = 'Terra', raioReal = '6.371 km', afelio =  '152.100.000 km', perielio = '147.100.000 km', Fg = '9,8 m/s²')
     terra.y_vel = 29.783 * 1000 
 
-    marte = Planeta(-1.524 * Planeta.UA, 0, 12, RED, 6.39 * 10**23, nome = 'marte', raioReal = '3.389,5 km', afelio = '249.200.000 km', perielio = '206.700.000', Fg = '3,71 m/s²')
+    marte = Planeta(-1.524 * Planeta.UA, 0, 12, RED, 6.39 * 10**23, nome = 'Marte', raioReal = '3.389,5 km', afelio = '249.200.000 km', perielio = '206.700.000', Fg = '3,71 m/s²')
     marte.y_vel = 24.077 * 1000
 
-    mercurio = Planeta(0.387 * Planeta.UA, 0, 8, DARK_GREY, 3.30 * 10**23, nome = 'mercurio', raioReal = '2.439,7 km', afelio = '69.800.000 km', perielio = '46.000.000 km', Fg = '3,7 m/s²')
+    mercurio = Planeta(0.387 * Planeta.UA, 0, 8, DARK_GREY, 3.30 * 10**23, nome = 'Mercurio', raioReal = '2.439,7 km', afelio = '69.800.000 km', perielio = '46.000.000 km', Fg = '3,7 m/s²')
     mercurio.y_vel = -47.4 * 1000
 
-    venus = Planeta(0.723 * Planeta.UA, 0, 14, ORANGE, 4.8685 * 10**24, nome = 'venus', raioReal =  '6.051,8 km', afelio = '108.900.000 km', perielio = '107.500.000 km', Fg = '8,87 m/s²')
+    venus = Planeta(0.723 * Planeta.UA, 0, 14, ORANGE, 4.8685 * 10**24, nome = 'Venus', raioReal =  '6.051,8 km', afelio = '108.900.000 km', perielio = '107.500.000 km', Fg = '8,87 m/s²')
     venus.y_vel = -35.02 * 1000
 
     planetas = [sol, terra, marte, mercurio, venus]
@@ -151,29 +163,19 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()  
+                click_x, click_y = mouse_pos
 
                 for planeta in planetas:
-                    if planeta.check_click_on_planet(mouse_pos, planeta):
-                        print("Planeta clicado")
+                    if planeta.is_click_on_orbit(click_x, click_y) or planeta.check_click_on_planet(mouse_pos, planeta):
                         window = pygame_gui.elements.UIWindow(pygame.Rect((200, 200), (600, 400)), manager)
                         window.set_display_title(f'Informações do Corpo Celeste: {planeta.nome}')
                         windows.append(window)
 
-                        if planeta.estrela == True:
+                        if planeta.estrela == False:
 
                             raio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 0), (300, 50)), f'Raio: {planeta.raioReal}', manager, window)
                             massa_label = pygame_gui.elements.UILabel(pygame.Rect((0, 50), (300, 50)), f'Massa: {planeta.massa}', manager, window)
-                            fg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 200), (300, 50)), f'Força G: {planeta.Fg}', manager, window)
-
-                            planet_image = pygame.image.load(f'imagens/{planeta.nome}.png')
-                            scaled_image = pygame.transform.scale(planet_image, (200, 200))
-                            planet_image_ui = pygame_gui.elements.UIImage(pygame.Rect((300, 60), (200, 200)), scaled_image, manager, container=window)
-
-                        elif planeta.estrela == False:
-
-                            raio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 0), (300, 50)), f'Raio: {planeta.raioReal}', manager, window)
-                            massa_label = pygame_gui.elements.UILabel(pygame.Rect((0, 50), (300, 50)), f'Massa: {planeta.massa}', manager, window)
-                            fg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 200), (300, 50)), f'Força G: {planeta.Fg}', manager, window)    
+                            fg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 200), (300, 50)), f'Aceleração da Gravidade: {planeta.Fg}', manager, window)    
                             afelio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 100), (300, 50)), f'Distância no Afélio: {planeta.afelio}', manager, window)
                             perielio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 150), (300, 50)), f'Distância no periélio: {planeta.perielio}', manager, window)                        
                         
@@ -181,6 +183,18 @@ def main():
                             scaled_image = pygame.transform.scale(planet_image, (200, 200))
                             planet_image_ui = pygame_gui.elements.UIImage(pygame.Rect((300, 60), (200, 200)), scaled_image, manager, container=window)
 
+                        elif planeta.estrela == True:
+
+                            raio_label = pygame_gui.elements.UILabel(pygame.Rect((0, 0), (300, 50)), f'Raio: {planeta.raioReal}', manager, window)
+                            massa_label = pygame_gui.elements.UILabel(pygame.Rect((0, 50), (300, 50)), f'Massa: {planeta.massa}', manager, window)
+                            fg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 200), (300, 50)), f'Aceleração da Gravidade: {planeta.Fg}', manager, window)
+                            magg_label = pygame_gui.elements.UILabel(pygame.Rect((0, 100), (300, 50)), 'M.absoluta: 4,83', manager, window)
+                            mag_label = pygame_gui.elements.UILabel(pygame.Rect((0, 150), (300, 50)), 'M. aparente: -26,74', manager, window)
+
+                            planet_image = pygame.image.load(f'imagens/{planeta.nome}.png')
+                            scaled_image = pygame.transform.scale(planet_image, (200, 200))
+                            planet_image_ui = pygame_gui.elements.UIImage(pygame.Rect((300, 60), (200, 200)), scaled_image, manager, container=window)
+                            
             manager.process_events(event)
 
         for planeta in planetas:

@@ -1,5 +1,7 @@
 from vpython import *
 import random
+import time
+import sys
 
 def deslocar(corpo):
     global dt
@@ -25,10 +27,15 @@ def resultados(corpo):
     alcance = corpo.pos.x - p0.x
     velocidade = corpo.d / corpo.t
     scene.caption += "<b>" + corpo.legenda + "</b>\n"
+    time.sleep(1)
     scene.caption += "Tempo total = {:.2f} s\n".format(corpo.t)
+    time.sleep(1)
     scene.caption += "Alcance horizontal = {:.2f} m\n".format(alcance)
+    time.sleep(1)
     scene.caption += "Distância percorrida = {:.2f} m\n".format(corpo.d)
+    time.sleep(1)
     scene.caption += "Velocidade média = {:.2f} m/s\n".format(velocidade)
+    time.sleep(1)
     scene.caption += "Altura máxima = {:.2f} m\n\n".format(corpo.alt)
     return 
 
@@ -64,7 +71,7 @@ while True:
     bola.d = 0
 
     cont += 1
-    projetar(bola, vel, ang, f"Bola {cont}")
+    projetar(bola, vel, ang, "Dados da simulação:")
 
     bola.a = g
 
