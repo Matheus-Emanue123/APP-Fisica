@@ -33,9 +33,29 @@ def mostrar_creditos():
     back_button.pack(side='bottom', pady=10)
 
 def show_main_menu():
-   
     for widget in root.winfo_children():
-        widget.destroy()    
+        widget.destroy()
+
+    button1 = ttk.Button(root, text="Plotar Gráficos Cinemática", command=run_file1, style="BW.TButton")
+    button1.pack(pady=10)
+
+    button2 = ttk.Button(root, text="Simulação 3D Lançamento Oblíquo", command=run_file2, style="BW.TButton")
+    button2.pack(pady=10)
+
+    button3 = ttk.Button(root, text="Simulação 2D Sistema Solar", command=run_file3, style="BW.TButton")
+    button3.pack(pady=10)
+
+    button4 = ttk.Button(root, text="Simulação 3D Sistema Solar", command=run_file4, style="BW.TButton")
+    button4.pack(pady=10)
+
+    button5 = ttk.Button(root, text="Simulação 3D Sistema Massa-Mola", command=run_file5, style="BW.TButton")
+    button5.pack(pady=10)
+
+    button6 = ttk.Button(root, text="Sair", command=root.destroy, style="BW.TButton")
+    button6.pack(side='bottom',pady=10)
+
+    creditos_button = ttk.Button(root, text="Creditos", command=mostrar_creditos, style="BW.TButton")
+    creditos_button.pack(side='bottom', pady=10)   
 
 def run_splash():
     global splash_x, splash_y, window_width, window_height, win
@@ -64,7 +84,7 @@ def run_splash():
         win.clear()
         sprite.draw()
 
-    pyglet.clock.schedule_once(fechar_janela, 4)
+    pyglet.clock.schedule_once(fechar_janela, 6.5)
 
     pyglet.app.run()
 

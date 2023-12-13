@@ -1,6 +1,8 @@
 from vpython import *
 import numpy as np
 
+scene = canvas(title = "<h1>Simulação 3D do Sistema Solar</h1><br />", forward = vec(-0.5, -0.2, -1))
+
 solRaio = 69550
 mercurioRaio = 2440
 venusRaio = 6052
