@@ -5,6 +5,10 @@ import random
 
 pygame.init()
 
+icon = pygame.image.load('imagens/icone2.ico')  # or 'path_to_your_icon.jpeg'
+
+pygame.display.set_icon(icon)
+
 WIDTH, HEIGHT = 800, 800
 manager = pygame_gui.UIManager((800, 600))
 windows = []

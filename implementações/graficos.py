@@ -170,5 +170,26 @@ class PhysicsGraphApp:
         plt.show()
 
 root = tk.Tk()
+root.iconbitmap('imagens/icone2.ico')
 app = PhysicsGraphApp(root)
+
+root.update()
+
+# Get window width and height
+window_width = root.winfo_width()
+window_height = root.winfo_height()
+
+# Get screen width and height
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+
+# Calculate position coordinates
+x = (screen_width / 2) - (window_width / 2)
+y = (screen_height / 2) - (window_height / 2)
+
+# Set the position of the window to the center of the screen
+root.geometry('%dx%d+%d+%d' % (window_width, window_height, x, y))
+
+root.mainloop()
+
 root.mainloop()
